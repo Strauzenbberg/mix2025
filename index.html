@@ -11,54 +11,25 @@
       background-color: black;
       overflow: hidden;
     }
-    #player {
+    iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div id="player"></div>
+  <iframe 
+    id="ytplayer"
+    src="https://www.youtube.com/embed/D4BZoWMRa78?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
 
   <script>
-    // Carrega a API do YouTube
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        videoId: 'D4BZoWMRa78',
-        playerVars: {
-          autoplay: 1,
-          mute: 0,         // som ativado
-          playsinline: 1,
-          controls: 0,
-          modestbranding: 1,
-          rel: 0,
-          showinfo: 0,
-          fs: 1
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    function onPlayerReady(event) {
-      try {
-        event.target.unMute();      // força som ativado
-        event.target.playVideo();   // inicia reprodução
-        requestFullscreen(document.getElementById('player'));
-      } catch (e) {
-        console.warn("Autoplay com som pode ter sido bloqueado pelo navegador.");
-      }
-    }
-
     function requestFullscreen(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -70,6 +41,11 @@
         element.msRequestFullscreen();
       }
     }
+
+    window.onload = function() {
+      const iframe = document.getElementById('ytplayer');
+      requestFullscreen(iframe);
+    };
   </script>
 </body>
 </html>
