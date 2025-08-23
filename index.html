@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Tomorrowland 2025 - Fullscreen</title>
+  <title>Tomorrowland 2025 - Fullscreen Autoplay</title>
   <style>
     html, body {
       margin: 0;
@@ -18,10 +18,23 @@
       width: 100vw;
       height: 100vh;
     }
+    #unmuteBtn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
   <div id="player"></div>
+  <button id="unmuteBtn" onclick="unmuteVideo()">🔊 Ativar Som</button>
 
   <script>
     // Carrega a API do YouTube
@@ -34,7 +47,9 @@
       player = new YT.Player('player', {
         videoId: 'D4BZoWMRa78',
         playerVars: {
-          autoplay: 1,
+          autoplay: 1,     // inicia automaticamente
+          mute: 1,         // sem som, para permitir autoplay
+          playsinline: 1,  // evita abrir em modo nativo em dispositivos móveis
           controls: 0,
           modestbranding: 1,
           rel: 0,
@@ -48,7 +63,8 @@
     }
 
     function onPlayerReady(event) {
-      event.target.playVideo();
+      event.target.mute();       // garante que o vídeo esteja mudo
+      event.target.playVideo();  // inicia a reprodução
       requestFullscreen(document.getElementById('player'));
     }
 
@@ -62,6 +78,11 @@
       } else if (element.msRequestFullscreen) {
         element.msRequestFullscreen();
       }
+    }
+
+    function unmuteVideo() {
+      player.unMute();
+      document.getElementById('unmuteBtn').style.display = 'none';
     }
   </script>
 </body>
