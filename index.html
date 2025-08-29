@@ -6,46 +6,4 @@
   <style>
     html, body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
-      overflow: hidden;
-    }
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <iframe 
-    id="ytplayer"
-    src="https://www.youtube.com/embed/D4BZoWMRa78?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
-
-  <script>
-    function requestFullscreen(element) {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-      }
-    }
-
-    window.onload = function() {
-      const iframe = document.getElementById('ytplayer');
-      requestFullscreen(iframe);
-    };
-  </script>
-</body>
-</html>
+   
