@@ -1,68 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Autoplay YouTube Fullscreen</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background-color: black;
-        overflow: hidden;
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>IBIZA Mix - Fullscreen Autoplay com Som</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe 
+    id="ytplayer"
+    src="https://www.youtube.com/embed/iknvpYDF2fU?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    function requestFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
       }
-      #player {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 9999;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="player"></div>
+    }
 
-    <script>
-      let tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      let firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      let player;
-
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          videoId: 'IOLURiya1k', // substitua pelo ID do vídeo desejado
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            modestbranding: 1,
-            rel: 0,
-            fs: 1,
-            playsinline: 1
-          },
-          events: {
-            'onReady': onPlayerReady
-          }
-        });
-      }
-
-      function onPlayerReady(event) {
-        // Tenta ativar fullscreen
-        let iframe = event.target.getIframe();
-        if (iframe.requestFullscreen) {
-          iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) {
-          iframe.webkitRequestFullscreen();
-        } else if (iframe.mozRequestFullScreen) {
-          iframe.mozRequestFullScreen();
-        }
-
-        // Tenta desmutar e dar play
-        event.target.unMute();
-        event.target.playVideo();
-      }
-    </script>
-  </body>
+    window.onload = function() {
+      const iframe = document.getElementById('ytplayer');
+      requestFullscreen(iframe);
+    };
+  </script>
+</body>
 </html>
