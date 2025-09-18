@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Tomorrowland 2025 - Fullscreen Autoplay com Som</title>
+  <title>IBIZA - Fullscreen Autoplay com Som</title>
   <style>
     html, body {
       margin: 0;
@@ -25,28 +25,9 @@
 <body>
   <iframe 
     id="ytplayer"
-    src="https://www.youtube.com/embed/RDuD8ZjrHxP3Q?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+    src="https://www.youtube.com/embed/uD8ZjrHxP3Q?autoplay=1&rel=0&modestbranding=1&playsinline=1"
     allow="autoplay; fullscreen"
     allowfullscreen>
   </iframe>
-
-  <script>
-    function requestFullscreen(element) {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-      }
-    }
-
-    window.onload = function() {
-      const iframe = document.getElementById('ytplayer');
-      requestFullscreen(iframe);
-    };
-  </script>
 </body>
 </html>
